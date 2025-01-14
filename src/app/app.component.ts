@@ -16,4 +16,6 @@ export class AppComponent {
 
   }
 }
-
+$.get("https://localhost:7285/api/products/corstest", (data) => {
+  console.log(data);
+})
