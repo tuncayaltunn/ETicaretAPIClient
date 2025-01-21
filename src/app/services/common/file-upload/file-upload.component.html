@@ -2,7 +2,7 @@
     <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="selectedFiles($event)">
     <!-- (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)"> -->
         <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-          Dosyaları seçiniz
+          {{options.explanation}}
           <button type="button" (click)="openFileSelector()">Seç</button>
         </ng-template>
     </ngx-file-drop>

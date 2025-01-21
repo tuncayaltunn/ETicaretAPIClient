@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 import { HttpClientService } from '../http-client.service';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { AlertifyService } from '../../admin/alertify.service';
-import { CustomToastrService } from '../../ui/custom-toastr.service';
+import { AlertifyService, MessageType, Position } from '../../admin/alertify.service';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../ui/custom-toastr.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -18,7 +18,7 @@ export class FileUploadComponent {
     private customToastrService : CustomToastrService 
   ) {}
 
-  @Input() options : Partial<FileUploadOptions>
+  @Input() options : Partial<FileUploadOptions>;
 
   public files: NgxFileDropEntry[];
 
@@ -37,22 +37,39 @@ export class FileUploadComponent {
         queryString : this.options.queryString,
         headers : new HttpHeaders({"responseType":"blob"})
       }, fileData).subscribe(data => {
+        const message : string = "Dosyalar başarıyla yüklenmiştir";
 
         if(this.options.isAdminPage){
-
+          this.alertifyService.message(message, {
+            dismissOthers : true,
+            messageType : MessageType.Success,
+            position : Position.TopRight
+          })
         }
         else{
-
+          this.customToastrService.message(message, "Başarılı", {
+            messageType : ToastrMessageType.Success,
+            position: ToastrPosition.TopRight
+          })
         }
 
 
       }, (errorResponse : HttpErrorResponse) => {
 
-        if(this.options.isAdminPage){
+        const message : string = "Dosyalar yüklenirken beklenilmeyen bir hata ile karşılaşılmıştır";
 
+        if(this.options.isAdminPage){
+          this.alertifyService.message(message, {
+            dismissOthers : true,
+            messageType : MessageType.Error,
+            position : Position.TopRight
+          })
         }
         else{
-
+          this.customToastrService.message(message, "Başarısız", {
+            messageType : ToastrMessageType.Error,
+            position: ToastrPosition.TopRight
+          })
         }
 
       });
@@ -68,6 +85,6 @@ export class FileUploadOptions{
   action? : string;
   queryString? : string;
   explanation? : string;
-  accept? : string;
+  accept_msg? : string;
   isAdminPage? : boolean = false
 }
