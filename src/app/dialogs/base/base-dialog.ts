@@ -9,6 +9,6 @@ constructor(public dialogRef : MatDialogRef<DialogComponent>) {
 }
 
     close(){
-
+        this.dialogRef.close();
     }
 }

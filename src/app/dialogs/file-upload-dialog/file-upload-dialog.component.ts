@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { BaseDialog } from '../base/base-dialog';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-file-upload-dialog',
@@ -9,10 +9,14 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class FileUploadDialogComponent extends BaseDialog<FileUploadDialogComponent> {
 
+  @Inject(MAT_DIALOG_DATA) data : FileUploadDialogState
+
   constructor(dialogRef : MatDialogRef<FileUploadDialogComponent>) {
     super(dialogRef);
    }
 
+}
 
-
+export enum FileUploadDialogState{
+  Yes, No
 }
