@@ -3,14 +3,14 @@
     <div class="col-6">
         <form [formGroup]="frm" (ngSubmit)="onSubmit(frm.value)">
             <div class="mb-3">
-                <label for="adSoyad" class="form-label">Ad Soyad</label>
-                <input type="text" formControlName="adSoyad" [ngClass]="{ 'is-invalid': submitted && component['adSoyad'].errors}" class="form-control" id="adSoyad" placeholder="Ad Soyad">
-                <small style="display: none; color:red;" *ngIf="submitted && component['adSoyad'].errors">Lütfen ad soyad giriniz</small>
+                <label for="nameSurname" class="form-label">Ad Soyad</label>
+                <input type="text" formControlName="nameSurname" [ngClass]="{ 'is-invalid': submitted && component['nameSurname'].errors}" class="form-control" id="nameSurname" placeholder="Ad Soyad">
+                <small style="display: none; color:red;" *ngIf="submitted && component['nameSurname'].errors">Lütfen ad soyad giriniz</small>
             </div>
             <div class="mb-3">
-                <label for="kullaniciAdi" class="form-label">Kullanıcı Adı</label>
-                <input type="text" formControlName="kullaniciAdi" [ngClass]="{ 'is-invalid': submitted && component['kullaniciAdi'].errors}" class="form-control" id="kullaniciAdi" placeholder="Kullanıcı Adı">
-                <small style="display: none; color:red;" *ngIf="submitted && component['kullaniciAdi'].errors">Lütfen kullanıcı adı giriniz</small>
+                <label for="username" class="form-label">Kullanıcı Adı</label>
+                <input type="text" formControlName="username" [ngClass]="{ 'is-invalid': submitted && component['username'].errors}" class="form-control" id="username" placeholder="Kullanıcı Adı">
+                <small style="display: none; color:red;" *ngIf="submitted && component['username'].errors">Lütfen kullanıcı adı giriniz</small>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
@@ -18,14 +18,14 @@
                 <small style="display: none; color:red;" *ngIf="submitted && component['email'].errors">Lütfen email giriniz</small>
             </div>
             <div class="mb-3">
-                <label for="sifre" class="form-label">Şifre</label>
-                <input type="password" formControlName="sifre" [ngClass]="{ 'is-invalid': submitted && component['sifre'].errors}" class="form-control" id="sifre" placeholder="Şifre">
-                <small style="display: none; color:red;" *ngIf="submitted && component['sifre'].errors">Lütfen şifre giriniz</small>
+                <label for="password" class="form-label">Şifre</label>
+                <input type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && component['password'].errors}" class="form-control" id="password" placeholder="Şifre">
+                <small style="display: none; color:red;" *ngIf="submitted && component['password'].errors">Lütfen şifre giriniz</small>
             </div>
             <div class="mb-3">
-                <label for="sifreTekrar" class="form-label">Şifre Tekrar</label>
-                <input type="password" formControlName="sifreTekrar" [ngClass]="{ 'is-invalid': submitted && component['sifreTekrar'].errors}" class="form-control" id="sifreTekrar" placeholder="Şifre Tekrar">
-                <small style="display: none; color:red;" *ngIf="submitted && component['sifreTekrar'].errors">Lütfen şifre tekrarı giriniz</small>
+                <label for="passwordConfirm" class="form-label">Şifre Tekrar</label>
+                <input type="password" formControlName="passwordConfirm" [ngClass]="{ 'is-invalid': submitted && component['passwordConfirm'].errors}" class="form-control" id="passwordConfirm" placeholder="Şifre Tekrar">
+                <small style="display: none; color:red;" *ngIf="submitted && component['passwordConfirm'].errors">Lütfen şifre tekrarı giriniz</small>
                 <small style="display: none; color:red;" *ngIf="submitted && frm.hasError('notSame')">Lütfen şifreyi doğrulayınız</small>
             </div>
             <div class="mb-3">
