@@ -11,8 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from "ngx-spinner";
 
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { HttpErrorHandlerInterceptorService } from './services/common/http-error-handler-interceptor.service';
 
 
 
@@ -38,7 +39,8 @@ import { JwtModule } from '@auth0/angular-jwt';
     })
 ],
   providers: [
-    { provide : "baseUrl", useValue: "https://localhost:7285/api", multi : true }
+    { provide : "baseUrl", useValue: "https://localhost:7285/api", multi : true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorHandlerInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })
