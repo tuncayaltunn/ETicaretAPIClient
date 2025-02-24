@@ -21,7 +21,8 @@ export class UserAuthService {
 
     const tokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
     if(tokenResponse){
-      localStorage.setItem("accessToken",tokenResponse.token.accessToken)
+      localStorage.setItem("accessToken",tokenResponse.token.accessToken);
+      localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
       this.toastr.message("Kullanıcı girişi başarıyla sağlanmıştır","Giriş Başarılı", {
         messageType : ToastrMessageType.Success,
         position : ToastrPosition.TopRight
@@ -30,4 +31,20 @@ export class UserAuthService {
 
     callBackFunction(); 
   }
+
+  async refreshTokenLogin(refreshToken : string, callBackFunction? : () => void ) : Promise<any> {
+    const observable : Observable<any | TokenResponse> = this.httpClientService.post({
+      action : "refreshtokenlogin",
+      controller : "auth"
+    }, { refreshToken : refreshToken });
+
+    const tokenResponse : TokenResponse = await firstValueFrom(observable) as TokenResponse;
+
+    if(tokenResponse){
+      localStorage.setItem("accessToken",tokenResponse.token.accessToken);
+      localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
+    }
+    callBackFunction();
+  }
+
 }
