@@ -16,8 +16,6 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { HttpErrorHandlerInterceptorService } from './services/common/http-error-handler-interceptor.service';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent
@@ -34,7 +32,7 @@ import { HttpErrorHandlerInterceptorService } from './services/common/http-error
     JwtModule.forRoot({
       config: {
         tokenGetter : () => localStorage.getItem("accessToken"),
-        allowedDomains : ["localhost:7285/"]
+        allowedDomains : ["localhost:7285"]
       }
     })
 ],

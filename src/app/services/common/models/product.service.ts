@@ -30,36 +30,16 @@ export class ProductService {
     })
   }
 
-  async read(page : number, size : number, successCallBack? : () => void, 
-  errorCallBack? : (errorMessage : string) => void) : Promise<{totalCount : number, products : List_Product[]}>{
+  async read(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<{ totalProductCount: number; products: List_Product[] }> {
+    const promiseData: Promise<{ totalProductCount: number; products: List_Product[] }> = this.httpClientService.get<{ totalProductCount: number; products: List_Product[] }>({
+      controller: "products",
+      queryString: `page=${page}&size=${size}`
+    }).toPromise();
 
-    // const promiseData : Promise<[totalCount : number, products : List_Product[]]> = 
-    //   this.httpClientService.get<[totalCount : number, products : List_Product[]]>({
-    //   controller: "products"
-    // }).toPromise();
-
-    const promiseData : Promise<{totalCount : number, products : List_Product[]}> = lastValueFrom(
-      this.httpClientService.get<{totalCount : number, products : List_Product[]}>({
-          controller: "products",
-          queryString : `page=${page}&size=${size}`
-    }).pipe(
-
-      // map(response => {
-      //   // Eğer API cevabında doğru sıralama varsa, direkt olarak döndürmek
-      //   //const [totalCount, products] = response;
-      //   return response; //{ totalCount, products };
-      // })
-
-      //concatMap(productsArray => productsArray),  // Her bir Product[] öğesini tek tek açıyoruz
-      //toArray()  // Tüm öğeleri birleştiriyoruz
-    ));
-
-    promiseData
-        .then(d => successCallBack())
-        .catch( (errorResponse : HttpErrorResponse) => errorCallBack(errorResponse.message) );
+    promiseData.then(d => successCallBack())
+      .catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message))
 
     return await promiseData;
-
   }
 
   async delete(id : string){
@@ -89,6 +69,16 @@ export class ProductService {
       }, id)
       await firstValueFrom(deleteObservable);
       successCallBack();
+  }
+
+  async changeShowcaseImage(imageId: string, productId: string, successCallBack?: () => void): Promise<void> {
+    const changeShowcaseImageObservable = this.httpClientService.get({
+      controller: "products",
+      action: "ChangeShowcaseImage",
+      queryString: `imageId=${imageId}&productId=${productId}`
+    });
+    await firstValueFrom(changeShowcaseImageObservable);
+    successCallBack();
   }
 
 }
