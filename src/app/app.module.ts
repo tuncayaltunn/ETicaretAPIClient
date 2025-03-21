@@ -41,6 +41,7 @@ import { LoginComponent } from './ui/components/login/login.component';
 ],
   providers: [
     { provide : "baseUrl", useValue: "https://localhost:7285/api", multi : true },
+    { provide : "baseSignalRUrl", useValue: "http://localhost:7285/", multi : true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorHandlerInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
