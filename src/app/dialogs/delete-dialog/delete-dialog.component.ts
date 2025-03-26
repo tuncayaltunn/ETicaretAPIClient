@@ -8,19 +8,11 @@ import { BaseDialog } from '../base/base-dialog';
   styleUrls: ['./delete-dialog.component.scss']
 })
 export class DeleteDialogComponent extends BaseDialog<DeleteDialogComponent> {
-
-
   readonly data = inject<any>(MAT_DIALOG_DATA);
 
-  /**
-   *
-   */
   constructor(dialogRef : MatDialogRef<DeleteDialogComponent>) {
-    super(dialogRef);
-    
+    super(dialogRef);    
   }
-
-
 }
 
 export enum DeleteState{
