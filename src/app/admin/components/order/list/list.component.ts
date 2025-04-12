@@ -5,7 +5,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { List_Order } from 'src/app/contracts/order/list_order';
 import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
-import { DialogService } from 'src/app/services/common/dialog.service';
 import { OrderService } from 'src/app/services/common/models/order.service';
 
 
@@ -16,8 +15,7 @@ import { OrderService } from 'src/app/services/common/models/order.service';
 })
 export class ListComponent extends BaseComponent implements OnInit {
 
-  constructor(spinner : NgxSpinnerService, private orderService : OrderService, private alertfiy : AlertifyService,
-    private dialogService : DialogService
+  constructor(spinner : NgxSpinnerService, private orderService : OrderService, private alertfiy : AlertifyService
   ) 
   { super(spinner) }
 
