@@ -59,3 +59,8 @@
   </table>
 
 </mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Kapat</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial (click)="completeOrder()" *ngIf="!singleOrder.completed">Siparişi Tamamlama</button>
+</mat-dialog-actions>
